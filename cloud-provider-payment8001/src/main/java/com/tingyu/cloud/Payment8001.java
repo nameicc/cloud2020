@@ -9,8 +9,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Date: 2020-09-04 17:26
  */
 @SpringBootApplication
-public class App {
+public class Payment8001 {
     public static void main(String[] args) {
-        SpringApplication.run(App.class, args);
+        SpringApplication.run(Payment8001.class, args);
     }
 }

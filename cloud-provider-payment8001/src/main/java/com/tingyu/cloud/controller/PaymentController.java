@@ -4,10 +4,7 @@ import com.tingyu.cloud.entity.CommonResult;
 import com.tingyu.cloud.entity.Payment;
 import com.tingyu.cloud.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -24,7 +21,8 @@ public class PaymentController {
     private PaymentService paymentService;
 
     @PostMapping("/payment/create")
-    public CommonResult create(Payment payment){
+    // 注意：@RequestBody注解的作用是接收来自Rest调用的Request Object
+    public CommonResult create(@RequestBody Payment payment){
         int result = paymentService.create(payment);
         // 该方式获取的是受影响的行数，并非是自增主键
         log.info("受影响行数：" + result);
