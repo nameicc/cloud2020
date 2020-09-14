@@ -13,6 +13,13 @@
 
     <dependencies>
 
+        <!-- api -->
+        <dependency>
+            <groupId>com.tingyu</groupId>
+            <artifactId>cloud-api-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
         <!-- web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
