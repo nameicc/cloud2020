@@ -2,6 +2,7 @@ package com.tingyu.cloud;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 /**
  * @Description
@@ -9,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Date 2020/9/10 16:38
  **/
 @SpringBootApplication
+@EnableEurekaClient
 public class Order80 {
 
     public static void main(String[] args) {
