@@ -1,0 +1,29 @@
+server:
+  port: 8002
+
+spring:
+  application:
+    name: cloud-payment-service
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/cloud2020?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: tingyu
+
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+  type-aliases-package: com.tingyu.cloud.entity
+
+
+
+eureka:
+  client:
+    # 向注册中心注册
+    register-with-eureka: true
+    # 检索服务
+    fetch-registry: true
+    # 服务中心
+    service-url:
+      #defaultZone: http://localhost:7001/eureka/
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/

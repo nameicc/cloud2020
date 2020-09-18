@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tingyu.cloud.dao.PaymentDao">
+
+    <!-- useGeneratedKeys="true" keyProperty="id" 用于自增主键，且将返回的主键设置到指定的Property属性中 -->
+    <!-- 想获取自增主键，需要xx.getId()方式获取 -->
+    <insert id="create" parameterType="Payment" useGeneratedKeys="true" keyProperty="id">
+        insert into payment(serial) values(#{serial})
+    </insert>
+
+    <select id="getPaymentById" parameterType="Long" resultType="Payment">
+        select * from payment where id = #{id}
+    </select>
+
+</mapper>
