@@ -5,9 +5,12 @@ import com.tingyu.cloud.entity.Payment;
 import com.tingyu.cloud.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @Description
@@ -23,6 +26,9 @@ public class PaymentController {
 
     @Value("${server.port}")
     private String serverPort;
+
+    @Resource
+    private DiscoveryClient discoveryClient;
 
     @PostMapping("/payment/create")
     // 注意：@RequestBody注解的作用是接收来自Rest调用的Request Object
@@ -46,6 +52,21 @@ public class PaymentController {
             return new CommonResult(200, "查询成功！服务端口号为：" + serverPort, payment);
         }
         return new CommonResult(405, "查询失败，id为：" + id);
+    }
+
+    @GetMapping("/payment/discovery")
+    public Object discovery(){
+        // service信息
+        List<String> servcies = discoveryClient.getServices();
+        for(String service : servcies){
+            log.info("service: " + service);
+        }
+        // instance信息
+        List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE");
+        for(ServiceInstance instance : instances){
+            log.info(instance.getServiceId() + "\t" + instance.getInstanceId() + "\t" + instance.getHost() + "\t" + instance.getPort() + "\t" + instance.getUri());
+        }
+        return discoveryClient;
     }
 
 }
