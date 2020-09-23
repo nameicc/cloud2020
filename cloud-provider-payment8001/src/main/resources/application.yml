@@ -32,3 +32,8 @@ eureka:
     instance-id: payment8001
     # 显示ip地址
     prefer-ip-address: true
+    # eureka client给server发送心跳的频率
+    lease-renewal-interval-in-seconds: 1
+    # eureka server至上一次收到client的心跳之后，等待下一次心跳的超时时间，如果在这个时间内没收到下一次心跳，移除该client
+    lease-expiration-duration-in-seconds: 2
+
