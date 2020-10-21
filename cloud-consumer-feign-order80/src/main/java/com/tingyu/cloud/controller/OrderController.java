@@ -24,4 +24,9 @@ public class OrderController {
         return paymentService.getPaymentById(id);
     }
 
+    @GetMapping("/consumer/payment/timeout")
+    public String paymentTimeOut(){
+        return paymentService.paymentTimeOut();
+    }
+
 }

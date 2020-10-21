@@ -15,3 +15,8 @@ eureka:
     service-url:
       #defaultZone: http://localhost:7001/eureka/
       defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/
+
+# OpenFeign的底层是Ribbon，通过Ribbon设置连接超时时间和读取超时时间
+ribbon:
+  ConnetctTimeout: 5000
+  ReadTimeout: 5000

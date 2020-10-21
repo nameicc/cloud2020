@@ -69,4 +69,14 @@ public class PaymentController {
         return discoveryClient;
     }
 
+    @GetMapping("/payment/timeout")
+    public String paymentTimeOut(){
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return serverPort;
+    }
+
 }

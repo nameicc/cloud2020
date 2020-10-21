@@ -13,4 +13,7 @@ public interface IPaymentService {
     @GetMapping("payment/get/{id}")
     public CommonResult getPaymentById(@PathVariable("id") Long id);
 
+    @GetMapping("/payment/timeout")
+    public String paymentTimeOut();
+
 }
