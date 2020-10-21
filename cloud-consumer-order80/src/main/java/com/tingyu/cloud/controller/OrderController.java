@@ -2,7 +2,10 @@ package com.tingyu.cloud.controller;
 
 import com.tingyu.cloud.entity.CommonResult;
 import com.tingyu.cloud.entity.Payment;
+import com.tingyu.cloud.loadbalancer.MyLoadBalancer;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @Description
@@ -25,6 +29,12 @@ public class OrderController {
 
     @Resource
     private RestTemplate restTemplate;
+
+    @Resource
+    private DiscoveryClient discoveryClient;
+
+    @Resource
+    private MyLoadBalancer myLoadBalancer;
 
     @GetMapping("consumer/payment/create")
     public CommonResult create(Payment payment){
@@ -47,5 +57,20 @@ public class OrderController {
         }
     }
 
+    @GetMapping("consumer/payment/lb/{id}")
+    public CommonResult getLBPayment(@PathVariable("id") Long id){
+        // service信息
+        List<String> servcies = discoveryClient.getServices();
+        // instance信息
+        List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE");
+        ServiceInstance instance = myLoadBalancer.getServiceInstance(instances);
+        log.info("url : " + instance.getUri());
+        ResponseEntity<CommonResult> entity = restTemplate.getForEntity(instance.getUri() + "/payment/get/" + id, CommonResult.class);
+        if(entity.getStatusCode().is2xxSuccessful()){
+            return entity.getBody();
+        }else{
+            return new CommonResult(444, "请求错误");
+        }
+    }
 
 }
