@@ -20,3 +20,8 @@ eureka:
 ribbon:
   ConnetctTimeout: 5000
   ReadTimeout: 5000
+
+
+logging:
+  level:
+    com.tingyu.cloud.service.IPaymentService: debug
