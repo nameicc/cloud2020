@@ -14,3 +14,21 @@ eureka:
     # 服务中心
     service-url:
       defaultZone: http://localhost:7001/eureka/
+
+# 开启客户端服务降级
+feign:
+  hystrix:
+    enabled: true
+
+# 若不设置此参数，feign调用会超时，无法进行测试
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+# OpenFeign的底层是Ribbon，通过Ribbon设置连接超时时间和读取超时时间
+ribbon:
+  ConnetctTimeout: 5000
+  ReadTimeout: 5000
