@@ -1,5 +1,6 @@
 package com.tingyu.cloud.controller;
 
+import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.tingyu.cloud.service.IPaymentService;
@@ -15,6 +16,7 @@ import javax.annotation.Resource;
  * @Date 2020/10/22 17:58
  **/
 @RestController
+@DefaultProperties(defaultFallback = "globalFallback")
 public class OrderController {
 
     @Resource
@@ -26,16 +28,21 @@ public class OrderController {
     }
 
     @GetMapping("/consumer/payment/hystrix/timeout/{id}")
-    @HystrixCommand(fallbackMethod = "timeOutFallback", commandProperties = {
+    /*@HystrixCommand(fallbackMethod = "timeOutFallback", commandProperties = {
             @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value="1500")
-    })
+    })*/
+    @HystrixCommand
     public String payment_timeout(@PathVariable("id") long id){
-        //int a = 10 / 0;
+        int a = 10 / 0;
         return paymentService.payment_timeout(id);
     }
 
     public String timeOutFallback(@PathVariable("id") long id){
         return "order service timeout fallback";
+    }
+
+    public String globalFallback(){
+        return "global fallback";
     }
 
 }
