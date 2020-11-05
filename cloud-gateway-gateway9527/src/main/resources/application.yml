@@ -8,14 +8,19 @@ spring:
     gateway:
       routes:
         - id: payment-get
-          uri: http://localhost:8001
+          #uri: http://localhost:8001
+          uri: lb://CLOUD-PAYMENT-SERVICE
           predicates: # 断言，匹配成功则进行路由转发
             - Path=/payment/get/**
 
         - id: payment-lb
-          uri: http://localhost:8001
+          #uri: http://localhost:8001
+          uri: lb://CLOUD-PAYMENT-SERVICE
           predicates:
             - Path=/payment/lb/**
+      discovery:
+        locator:
+          enabled: true #开启从注册中心动态创建路由，利用微服务名进行路由
 
 
 eureka:
