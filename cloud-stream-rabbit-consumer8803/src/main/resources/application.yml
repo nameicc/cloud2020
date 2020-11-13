@@ -23,7 +23,7 @@ spring:
           destination: learn
           content-type: application/json
           binder: myBinder
-          group: groupB
+          #group: groupA                      # 此时重启后收不到持久化的消息
 eureka:
   client:
     service-url:
