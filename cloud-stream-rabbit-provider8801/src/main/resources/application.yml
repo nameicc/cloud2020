@@ -1,0 +1,31 @@
+server:
+  port: 8801
+
+spring:
+  application:
+    name: cloud-stream-provider
+  cloud:
+    stream:
+      # Binder的服务信息
+      binders:
+        myBinder: # Binder名称，下边Binding会使用
+          type: rabbit # MQ类型
+          environment:
+            spring:
+              rabbitmq:
+                host: 172.20.2.52
+                port: 5672
+                username: guest
+                password: guest
+      # 定义输入输出
+      bindings:
+        output:
+          destination: learn
+          content-type: application/json
+          binder: myBinder
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka/
+
