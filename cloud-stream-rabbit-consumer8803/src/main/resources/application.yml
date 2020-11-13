@@ -1,5 +1,5 @@
 server:
-  port: 8802
+  port: 8803
 
 spring:
   application:
@@ -23,7 +23,7 @@ spring:
           destination: learn
           content-type: application/json
           binder: myBinder
-          group: groupA
+          group: groupB
 eureka:
   client:
     service-url:
