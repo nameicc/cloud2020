@@ -29,6 +29,7 @@
     <module>cloud-config-client3355</module>
       <module>cloud-config-client3366</module>
       <module>cloud-stream-rabbit-provider8801</module>
+    <module>cloud-stream-rabbit-consumer8802</module>
   </modules>
 
   <!-- 集中管理jar包版本 -->

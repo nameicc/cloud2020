@@ -1,0 +1,29 @@
+server:
+  port: 8802
+
+spring:
+  application:
+    name: cloud-stream-consumer
+  cloud:
+    stream:
+      binders:
+        # 定义的Binder
+        myBinder:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: 172.20.2.52
+                port: 5672
+                username: guest
+                password: guest
+        # 定义消费者
+      bindings:
+        input:
+          destination: learn
+          content-type: application/json
+          binder: myBinder
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka/
