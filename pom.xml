@@ -34,6 +34,7 @@
       <module>cloudalibaba-provider-payment9001</module>
       <module>cloudalibaba-provider-payment9002</module>
       <module>cloudalibaba-consumer-Order83</module>
+      <module>cloudalibaba-config-client3377</module>
   </modules>
 
   <!-- 集中管理jar包版本 -->
