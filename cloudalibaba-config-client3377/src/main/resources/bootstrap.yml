@@ -14,3 +14,4 @@ spring:
         server-addr: localhost:8848
         file-extension: yaml
         group: DEV_GROUP
+        namespace: aee67f5a-1754-404d-87b4-4a8d0c0a7cce
