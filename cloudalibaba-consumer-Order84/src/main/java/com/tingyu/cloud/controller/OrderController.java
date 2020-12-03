@@ -4,6 +4,7 @@ import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.tingyu.cloud.entity.CommonResult;
 import com.tingyu.cloud.entity.Payment;
+import com.tingyu.cloud.service.IPaymentService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,6 +24,9 @@ public class OrderController {
 
     @Resource
     private RestTemplate restTemplate;
+
+    @Resource
+    private IPaymentService paymentService;
 
     @GetMapping("/consumer/payment/{id}")
     //@SentinelResource(value = "order", fallback = "payment_fallback") // fallback负责运行异常
@@ -48,6 +52,11 @@ public class OrderController {
     public CommonResult payment_blockhandler(long id, BlockException e){
         Payment payment = new Payment(id, "");
         return new CommonResult(444, "block handler, exception is " + e.getMessage(), payment);
+    }
+
+    @GetMapping("/feign/consumer/payment/{id}")
+    public CommonResult getPaymentWithFeign(@PathVariable("id") long id){
+        return paymentService.getPayment(id);
     }
 
 }
