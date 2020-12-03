@@ -36,6 +36,9 @@
       <module>cloudalibaba-consumer-Order83</module>
       <module>cloudalibaba-config-client3377</module>
       <module>cloudalibaba-sentinel-service8401</module>
+      <module>cloudalibaba-provider-payment9003</module>
+      <module>cloudalibaba-provider-payment9004</module>
+      <module>cloudalibaba-consumer-Order84</module>
   </modules>
 
   <!-- 集中管理jar包版本 -->
