@@ -26,7 +26,8 @@ public class OrderController {
 
     @GetMapping("/consumer/payment/{id}")
     //@SentinelResource(value = "order", fallback = "payment_fallback") // fallback负责运行异常
-    @SentinelResource(value = "order", blockHandler = "payment_blockhandler") // blockHandler负责Sentinel配置规则的违规
+    //@SentinelResource(value = "order", blockHandler = "payment_blockhandler") // blockHandler负责Sentinel配置规则的违规
+    @SentinelResource(value = "order", fallback = "payment_fallback", blockHandler = "payment_blockhandler")
     public CommonResult getPayment(@PathVariable("id") long id){
         CommonResult result = restTemplate.getForObject(SERVICE_URL + "/payment/" + id, CommonResult.class);
 
