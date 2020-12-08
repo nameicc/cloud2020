@@ -39,6 +39,9 @@
       <module>cloudalibaba-provider-payment9003</module>
       <module>cloudalibaba-provider-payment9004</module>
       <module>cloudalibaba-consumer-Order84</module>
+      <module>cloudalibaba-seata-Order2001</module>
+      <module>cloudalibaba-seata-storage2002</module>
+      <module>cloudalibaba-seata-account2003</module>
   </modules>
 
   <!-- 集中管理jar包版本 -->

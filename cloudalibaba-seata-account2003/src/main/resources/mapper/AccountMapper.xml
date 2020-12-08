@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tingyu.cloud.mapper.AccountMapper">
+
+    <insert id="insert" parameterType="com.tingyu.cloud.entity.AccountEntity">
+	    insert into t_account
+	    	(userid,total,used,rest)
+		values
+			(#{userid},#{total},#{used},#{rest})
+	</insert>
+
+</mapper>
