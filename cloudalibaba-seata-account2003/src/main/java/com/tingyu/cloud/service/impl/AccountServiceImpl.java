@@ -6,6 +6,7 @@ import com.tingyu.cloud.service.AccountService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Map;
 
 /**
  * @Description
@@ -21,5 +22,10 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public long insert(AccountEntity entity) {
         return accountMapper.insert(entity);
+    }
+
+    @Override
+    public long decrease(Map<String, Object> map) {
+        return accountMapper.decrease(map);
     }
 }

@@ -5,9 +5,15 @@
 
     <insert id="insert" parameterType="com.tinyu.cloud.entity.OrderEntity">
 	    insert into t_order
-	    	(userid,productid,amount,money)
+	    	(userid,productid,amount,money,state)
 		values
-			(#{userid},#{productid},#{amount},#{money})
+			(#{userid},#{productid},#{amount},#{money},#{state})
 	</insert>
+
+	<update id="updateState" parameterType="java.util.Map">
+	    update t_order
+	    set state = 1
+	    where userid = #{userid} and productid = #{productid}
+	</update>
 
 </mapper>

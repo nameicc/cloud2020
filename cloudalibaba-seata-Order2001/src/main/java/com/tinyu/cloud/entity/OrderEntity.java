@@ -13,7 +13,8 @@ public class OrderEntity {
     private long id;
     private long userid;
     private long productid;
-    private long amount;
+    private int amount;
     private double money;
+    private int state;
 
 }

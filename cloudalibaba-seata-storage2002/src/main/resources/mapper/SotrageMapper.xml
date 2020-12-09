@@ -10,4 +10,10 @@
 			(#{productid},#{total},#{used},#{rest})
 	</insert>
 
+	<update id="decrease" parameterType="java.util.Map">
+	    update t_storage
+	    set used = used + #{consume}, rest = rest - #{consume}
+	    where productid = #{productid}
+	</update>
+
 </mapper>

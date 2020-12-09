@@ -6,6 +6,7 @@ import com.tingyu.cloud.service.StorageService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Map;
 
 /**
  * @Description
@@ -21,6 +22,11 @@ public class StorageServiceImpl implements StorageService {
     @Override
     public long insert(StorageEntity entity) {
         return storageMapper.insert(entity);
+    }
+
+    @Override
+    public long decrease(Map<String, Object> map) {
+        return storageMapper.decrease(map);
     }
 
 }

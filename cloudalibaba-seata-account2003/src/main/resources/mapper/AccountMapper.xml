@@ -10,4 +10,10 @@
 			(#{userid},#{total},#{used},#{rest})
 	</insert>
 
+	<update id="decrease" parameterType="java.util.Map">
+	    update t_account
+	    set used = used + #{consume}, rest = rest - #{consume}
+	    where userid = #{userid}
+	</update>
+
 </mapper>

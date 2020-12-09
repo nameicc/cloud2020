@@ -3,6 +3,8 @@ package com.tinyu.cloud.mapper;
 import com.tinyu.cloud.entity.OrderEntity;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.Map;
+
 /**
  * @Description
  * @Author tingyu
@@ -12,5 +14,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface OrderMapper {
 
     public long insert(OrderEntity entity);
+
+    public void updateState(Map<String, Object> map);
 
 }
