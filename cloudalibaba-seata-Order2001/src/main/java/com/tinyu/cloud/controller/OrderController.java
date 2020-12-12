@@ -5,6 +5,7 @@ import com.tinyu.cloud.entity.OrderEntity;
 import com.tinyu.cloud.service.AccountService;
 import com.tinyu.cloud.service.OrderService;
 import com.tinyu.cloud.service.StorageService;
+import io.seata.spring.annotation.GlobalTransactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,6 +32,7 @@ public class OrderController {
     @Resource
     private AccountService accountService;
 
+    @GlobalTransactional(name = "create-order", rollbackFor = Exception.class)
     @GetMapping("/order/insert")
     public CommonResult insertOrder(OrderEntity orderEntity){
         // 添加订单

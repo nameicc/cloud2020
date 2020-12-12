@@ -10,6 +10,9 @@ spring:
     nacos:
       discovery:
         server-addr: localhost:8848
+    alibaba:
+      seata:
+        tx-service-group: scf_tx_group
 
   # 数据源
   datasource:
